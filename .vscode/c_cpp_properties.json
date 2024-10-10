@@ -1,0 +1,33 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/intern/interbotix_ws/install/widowx_msgs/include/**",
+        "/home/intern/interbotix_ws/install/relaxed_ik_ros2/include/**",
+        "/home/intern/interbotix_ws/install/moveit_calibration_gui/include/**",
+        "/home/intern/interbotix_ws/install/moveit_visual_tools/include/**",
+        "/home/intern/interbotix_ws/install/moveit_calibration_plugins/include/**",
+        "/home/intern/interbotix_ws/install/interbotix_xs_rviz/include/**",
+        "/home/intern/interbotix_ws/install/interbotix_xs_ros_control/include/**",
+        "/home/intern/interbotix_ws/install/interbotix_xs_msgs/include/**",
+        "/home/intern/interbotix_ws/install/interbotix_xs_driver/include/**",
+        "/home/intern/interbotix_ws/install/interbotix_perception_msgs/include/**",
+        "/home/intern/interbotix_ws/install/interbotix_moveit_interface_msgs/include/**",
+        "/home/intern/interbotix_ws/install/dynamixel_workbench_toolbox/include/**",
+        "/home/intern/apriltag_ws/install/apriltag_ros/include/**",
+        "/opt/ros/humble/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
