@@ -32,10 +32,10 @@ def show_box(box, ax):
 sam_checkpoint = "sam_vit_h_4b8939.pth"
 model_type = "vit_h"
 
-base_dir = os.path.expanduser('~/anygrasp_sdk/grasp_detection/example_data')
-color_image_filename = 'color.png'
-depth_image_filename = 'depth.png'
-depth_image_modified_filename = 'depth_modified.png'
+base_dir = os.path.expanduser('~/DetectionSegmentationTesting/image_dataset')
+color_image_filename = 'example_color.jpeg'
+depth_image_filename = 'example_depth.jpeg'
+depth_image_modified_filename = 'example_depth_modified.jpeg'
 
 color_image_path = os.path.join(base_dir, color_image_filename)
 depth_image_path = os.path.join(base_dir, depth_image_filename)

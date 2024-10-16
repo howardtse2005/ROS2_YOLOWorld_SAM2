@@ -1,0 +1,11 @@
+--2024-10-16 15:15:56--  https://th.bing.com/th/id/OIP.ZJOUSHF99nSg1V6JG_R9lAHaFj?w=251
+Resolving th.bing.com (th.bing.com)... 23.43.51.134, 23.43.51.137, 2600:1406:5800::173c:a840, ...
+Connecting to th.bing.com (th.bing.com)|23.43.51.134|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 8712 (8.5K) [image/jpeg]
+Saving to: ‘/home/hts2005/DetectionSegmentationTesting/example_color.jpeg’
+
+                /home/hts2005/De   0%[                                                        ]       0  --.-KB/s               /home/hts2005/DetectionSegmentat 100%[=======================================================>]   8.51K  --.-KB/s    in 0s      
+
+2024-10-16 15:15:59 (46.7 MB/s) - ‘/home/hts2005/DetectionSegmentationTesting/example_color.jpeg’ saved [8712/8712]
+
