@@ -1,2 +1,3 @@
 image_dataset/
 sam_vit_h_4b8939.pth
+wget-log
