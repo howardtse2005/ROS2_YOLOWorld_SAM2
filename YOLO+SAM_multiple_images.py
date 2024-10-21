@@ -48,8 +48,9 @@ predictor = SamPredictor(sam)
 predictor.set_image(image)
 
 # Run YOLO-world bounding box prediction based on set classes
-model.set_classes(["person", "bus"])
+model.set_classes(["person", "bus"]) # edit the keywords as you desire
 results = model.predict(color_image_path)
+
 ### PREDICT MASKS BASED ON A BOUNDING BOX ###
 # Initialize an empty list to accumulate bounding boxes
 all_boxes = []
