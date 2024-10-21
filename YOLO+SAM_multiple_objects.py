@@ -31,9 +31,8 @@ model_type = "vit_h"
 # Load YOLO-world model
 model = YOLO("yolov8s-world.pt")
 
-# Load the image data path (change this to your desired path)
 base_dir = os.path.expanduser('~/DetectionSegmentationTesting/example_image_dataset')
-color_image_filename = 'bus_color.jpg'
+color_image_filename = input("Enter the image filename: ")
 color_image_path = os.path.join(base_dir, color_image_filename)
 
 # Load the RGB image
@@ -49,23 +48,38 @@ predictor = SamPredictor(sam)
 predictor.set_image(image)
 
 # Run YOLO-world bounding box prediction based on set classes
-model.set_classes(["person", "bus"]) # edit the keywords as you desire
+keywords_input = input("Enter classes separated by commas: ")
+classes = [cls.strip() for cls in keywords_input.split(",")]
+model.set_classes(classes)
 results = model.predict(color_image_path)
-result = results[0]
 
 ### PREDICT MASKS BASED ON A BOUNDING BOX ###
-input_box = result.boxes[0].xyxy[0].cpu().numpy() 
-masks, _, _ = predictor.predict(
+# Initialize an empty list to accumulate bounding boxes
+all_boxes = []
+
+# Iterate over all results
+for result in results:
+    # Extract bounding boxes from the result
+    for box in result.boxes:
+        x1, y1, x2, y2 = box.xyxy[0].tolist()  # Convert to list and extract coordinates
+        all_boxes.append([x1, y1, x2, y2])
+
+# Convert the accumulated bounding boxes to a tensor
+input_boxes = torch.tensor(all_boxes, device=predictor.device)
+transformed_boxes = predictor.transform.apply_boxes_torch(input_boxes, image.shape[:2])
+masks, _, _ = predictor.predict_torch(
     point_coords=None,
     point_labels=None,
-    box=input_box[None, :],
+    boxes=transformed_boxes,
     multimask_output=False,
 )
 
 # Visualize the masks and bounding box
 plt.figure(figsize=(10, 10))
 plt.imshow(image)
-show_mask(masks[0], plt.gca())
-show_box(input_box, plt.gca())
+for mask in masks:
+    show_mask(mask.cpu().numpy(), plt.gca(), random_color=True)
+for box in input_boxes:
+    show_box(box.cpu().numpy(), plt.gca())
 plt.axis('off')
 plt.show()
