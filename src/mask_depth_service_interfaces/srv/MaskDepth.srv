@@ -1,5 +1,0 @@
-sensor_msgs/Image rgb_image
-sensor_msgs/Image depth_image
-geometry_msgs/Point point
----
-sensor_msgs/Image masked_depth_image
