@@ -35,10 +35,11 @@ base_dir = os.path.expanduser('~/DetectionSegmentationTesting/example_image_data
 color_image_filename = input("Enter the image filename: ")
 color_image_path = os.path.join(base_dir, color_image_filename)
 
-# Load the RGB image
+# Load the image
 image = cv2.imread(color_image_path)
 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
+# Predict the masks by SAM model
 device = "cuda"
 
 sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
@@ -47,17 +48,15 @@ sam.to(device=device)
 predictor = SamPredictor(sam)
 predictor.set_image(image)
 
-# Run YOLO-world bounding box prediction based on set classes
-keywords_input = input("Enter classes separated by commas: ")
+# Run YOLO-world bounding box prediction based on keywords
+keywords_input = input("Enter keywords separated by commas: ")
 classes = [cls.strip() for cls in keywords_input.split(",")]
 model.set_classes(classes)
 results = model.predict(color_image_path)
 
-### PREDICT MASKS BASED ON A BOUNDING BOX ###
-# Initialize an empty list to accumulate bounding boxes
+### PREDICT MASKS BASED ON BOUNDING BOXES ###
+# Asign bounding boxes to a list
 all_boxes = []
-
-# Iterate over all results
 for result in results:
     # Extract bounding boxes from the result
     for box in result.boxes:
@@ -74,7 +73,7 @@ masks, _, _ = predictor.predict_torch(
     multimask_output=False,
 )
 
-# Visualize the masks and bounding box
+# Visualize the masks and bounding boxes
 plt.figure(figsize=(10, 10))
 plt.imshow(image)
 for mask in masks:

@@ -36,10 +36,11 @@ base_dir = os.path.expanduser('~/DetectionSegmentationTesting/example_image_data
 color_image_filename = input("Enter the image filename: ")
 color_image_path = os.path.join(base_dir, color_image_filename)
 
-# Load the RGB image
+# Load the image
 image = cv2.imread(color_image_path)
 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
+# Predict the masks by SAM model
 device = "cuda"
 
 sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
@@ -48,7 +49,7 @@ sam.to(device=device)
 predictor = SamPredictor(sam)
 predictor.set_image(image)
 
-# Run YOLO-world bounding box prediction based on set classes
+# Run YOLO-world bounding box prediction based on a keyword
 keyword = input("Enter the keyword: ")
 model.set_classes(keyword)
 results = model.predict(color_image_path)
