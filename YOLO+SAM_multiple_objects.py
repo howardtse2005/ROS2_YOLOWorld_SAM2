@@ -31,7 +31,7 @@ model_type = "vit_h"
 # Load YOLO-world model
 model = YOLO("yolov8s-world.pt")
 
-base_dir = os.path.expanduser('~/DetectionSegmentationTesting/example_image_dataset')
+base_dir = os.path.expanduser('./example_image_dataset')
 color_image_filename = input("Enter the image filename: ")
 color_image_path = os.path.join(base_dir, color_image_filename)
 
@@ -51,6 +51,7 @@ predictor.set_image(image)
 # Run YOLO-world bounding box prediction based on keywords
 keywords_input = input("Enter keywords separated by commas: ")
 classes = [cls.strip() for cls in keywords_input.split(",")]
+print(classes)
 model.set_classes(classes)
 results = model.predict(color_image_path)
 
