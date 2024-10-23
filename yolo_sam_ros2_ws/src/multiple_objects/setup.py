@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'multiple_object_detection'
+package_name = 'multiple_objects'
 
 setup(
     name=package_name,
