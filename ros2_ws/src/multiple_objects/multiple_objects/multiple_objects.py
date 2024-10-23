@@ -23,7 +23,7 @@ class MultipleObjectsNode(Node):
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         
         # Load the SAM model using an absolute path
-        sam_checkpoint = os.path.expanduser("~/YOLO-World-SAM_segmentation/python_test/sam_vit_h_4b8939.pth") # Here I am using the absolute path to the checkpoint file
+        sam_checkpoint = os.path.expanduser("~/ROS2_YOLOWorld-SAM/sam_vit_h_4b8939.pth") # Here I am using the absolute path to the checkpoint file
         model_type = "vit_h"
         self.sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
         self.sam.to(device=self.device)

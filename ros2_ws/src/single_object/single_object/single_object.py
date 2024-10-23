@@ -15,15 +15,15 @@ class SingleObjectNode(Node):
         super().__init__('single_object_node')
         self.subscription = self.create_subscription(
             Image,
-            'input_image_topic',
+            'input_image_topic', # Change into the image topic name you want to subscribe to
             self.listener_callback,
             10)
-        self.publisher = self.create_publisher(Image, 'output_image_topic', 10)
+        self.publisher = self.create_publisher(Image, 'output_image_topic', 10) # Change into the topic name you want to publish to
         self.bridge = CvBridge()
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         
         # Load the SAM model
-        sam_checkpoint = os.path.expanduser("~/YOLO-World-SAM_segmentation/python_test/sam_vit_h_4b8939.pth") # Here I am using the absolute path to the checkpoint file
+        sam_checkpoint = os.path.expanduser("~/ROS2_YOLOWorld-SAM/sam_vit_h_4b8939.pth") # Here I am using the absolute path to the checkpoint file
         model_type = "vit_h"
         self.sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
         self.sam.to(device=self.device)

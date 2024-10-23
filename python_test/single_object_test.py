@@ -25,7 +25,7 @@ def show_box(box, ax):
 
 ### LOAD THE MODEL, IMAGE DATA AND PATH ###
 # Load the SAM model
-sam_checkpoint = "sam_vit_h_4b8939.pth"
+sam_checkpoint = os.path.expanduser("~/ROS2_YOLOWorld-SAM/sam_vit_h_4b8939.pth") # Here I am using the absolute path to the checkpoint file
 model_type = "vit_h"
 
 # Load YOLO-world model
