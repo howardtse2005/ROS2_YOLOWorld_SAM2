@@ -1,6 +1,7 @@
 sam_vit_h_4b8939.pth
 python_test/yolov8s-world.pt
 wget-log
+.vscode/
 ros2_ws/build/
 ros2_ws/install/
 ros2_ws/log/
