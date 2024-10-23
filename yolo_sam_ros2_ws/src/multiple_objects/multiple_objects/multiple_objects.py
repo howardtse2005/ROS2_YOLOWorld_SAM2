@@ -30,6 +30,8 @@ class MultipleObjectsNode(Node):
         
         # Load YOLO model
         self.yolo_model = YOLO("yolov8s-world.pt")
+        
+        self.get_logger().info('Node has been initialized')
 
     def listener_callback(self, msg):
         self.get_logger().info('Received image')

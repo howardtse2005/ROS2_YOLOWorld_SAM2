@@ -11,7 +11,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
     ],
-    install_requires=['setuptools', 'numpy', 'torch', 'matplotlib', 'opencv-python', 'segment-anything', 'ultralytics'],
+    install_requires=['setuptools', 'numpy', 'torch', 'matplotlib', 'opencv-python', 'segment-anything'],
     zip_safe=True,
     maintainer='fyp',
     maintainer_email='howard.tse2005@gmail.com',

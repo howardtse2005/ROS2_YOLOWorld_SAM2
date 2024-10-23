@@ -31,6 +31,8 @@ class SingleObjectNode(Node):
         # Load YOLO model
         self.yolo_model = YOLO("yolov8s-world.pt")
 
+        self.get_logger().info('Node has been initialized')
+
     def listener_callback(self, msg):
         self.get_logger().info('Received image')
         cv_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
