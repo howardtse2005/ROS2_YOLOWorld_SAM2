@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'single_object'
+package_name = 'multiple_object_detection'
 
 setup(
     name=package_name,
@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'single_object_node = single_object.single_object:main'
+            'multiple_objects_node = multiple_objects.multiple_objects:main'
         ],
     },
 )

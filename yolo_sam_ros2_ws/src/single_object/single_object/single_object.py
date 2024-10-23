@@ -37,6 +37,8 @@ class SingleObjectNode(Node):
         cv_image = cv2.cvtColor(cv_image, cv2.COLOR_BGR2RGB)
         
         # YOLO detection
+        classes = ['bus'] # Change the keywords as you desire
+        self.yolo_model.set_classes(classes)
         results = self.yolo_model(cv_image)
         boxes = results.xyxy[0].cpu().numpy()  # Assuming single image and single batch
         

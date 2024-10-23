@@ -10,9 +10,9 @@ from segment_anything import sam_model_registry, SamPredictor
 from ultralytics import YOLO
 import matplotlib.pyplot as plt
 
-class MultipleObjectNode(Node):
+class MultipleObjectsNode(Node):
     def __init__(self):
-        super().__init__('multiple_object_node')
+        super().__init__('multiple_objects_node')
         self.subscription = self.create_subscription(
             Image,
             'input_image_topic', # Change into the image topic name you want to subscribe to
@@ -37,8 +37,7 @@ class MultipleObjectNode(Node):
         cv_image = cv2.cvtColor(cv_image, cv2.COLOR_BGR2RGB)
         
         # Run YOLO-world bounding box prediction based on keywords
-        keywords_input = "person, bus"  # Replace with actual input or parameter
-        classes = [cls.strip() for cls in keywords_input.split(",")]
+        classes = ['person', 'bus'] # Change the keywords as you desire
         self.yolo_model.set_classes(classes)
         results = self.yolo_model(cv_image)
         
@@ -88,7 +87,7 @@ class MultipleObjectNode(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = MultipleObjectNode()
+    node = MultipleObjectsNode()
     rclpy.spin(node)
     node.destroy_node()
     rclpy.shutdown()
