@@ -32,7 +32,7 @@ model_type = "vit_h"
 model = YOLO("yolov8s-world.pt")
 
 # Load the image data path (change this to your desired path)
-base_dir = os.path.expanduser('./example_image_dataset')
+base_dir = os.path.expanduser('~/YOLO-World-SAM_segmentation/example_image_dataset') # Change this absolute path to your desired path
 color_image_filename = input("Enter the image filename: ")
 color_image_path = os.path.join(base_dir, color_image_filename)
 

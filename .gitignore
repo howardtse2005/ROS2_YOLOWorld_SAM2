@@ -1,5 +1,5 @@
-sam_vit_h_4b8939.pth
-yolov8s-world.pt
+test/sam_vit_h_4b8939.pth
+test/yolov8s-world.pt
 wget-log
 yolo_sam_ros2_ws/build/
 yolo_sam_ros2_ws/install/
