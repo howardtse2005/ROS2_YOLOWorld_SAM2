@@ -31,7 +31,7 @@ model_type = "vit_h"
 # Load YOLO-world model
 model = YOLO("yolov8s-world.pt")
 
-base_dir = os.path.expanduser('~/YOLO-World-SAM_segmentation/example_image_dataset') # Change this absolute path to your desired path
+base_dir = os.path.expanduser('~/ROS2_YOLOWorld-SAM/example_image_dataset') # Change this absolute path to your desired path
 color_image_filename = input("Enter the image filename: ")
 color_image_path = os.path.join(base_dir, color_image_filename)
 
@@ -55,6 +55,7 @@ print(classes)
 model.set_classes(classes)
 results = model.predict(color_image_path)
 
+
 ### PREDICT MASKS BASED ON BOUNDING BOXES ###
 # Asign bounding boxes to a list
 all_boxes = []
@@ -64,22 +65,26 @@ for result in results:
         x1, y1, x2, y2 = box.xyxy[0].tolist()  # Convert to list and extract coordinates
         all_boxes.append([x1, y1, x2, y2])
 
-# Convert the accumulated bounding boxes to a tensor
-input_boxes = torch.tensor(all_boxes, device=predictor.device)
-transformed_boxes = predictor.transform.apply_boxes_torch(input_boxes, image.shape[:2])
-masks, _, _ = predictor.predict_torch(
-    point_coords=None,
-    point_labels=None,
-    boxes=transformed_boxes,
-    multimask_output=False,
-)
+# Check if any bounding boxes are detected
+if len(all_boxes) == 0:
+    print("No objects detected!")
+else:
+    # Convert the accumulated bounding boxes to a tensor
+    input_boxes = torch.tensor(all_boxes, device=predictor.device)
+    transformed_boxes = predictor.transform.apply_boxes_torch(input_boxes, image.shape[:2])
+    masks, _, _ = predictor.predict_torch(
+        point_coords=None,
+        point_labels=None,
+        boxes=transformed_boxes,
+        multimask_output=False,
+    )
 
-# Visualize the masks and bounding boxes
-plt.figure(figsize=(10, 10))
-plt.imshow(image)
-for mask in masks:
-    show_mask(mask.cpu().numpy(), plt.gca(), random_color=True)
-for box in input_boxes:
-    show_box(box.cpu().numpy(), plt.gca())
-plt.axis('off')
-plt.show()
+    # Visualize the masks and bounding boxes
+    plt.figure(figsize=(10, 10))
+    plt.imshow(image)
+    for mask in masks:
+        show_mask(mask.cpu().numpy(), plt.gca(), random_color=True)
+    for box in input_boxes:
+        show_box(box.cpu().numpy(), plt.gca())
+    plt.axis('off')
+    plt.show()

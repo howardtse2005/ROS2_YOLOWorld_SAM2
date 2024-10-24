@@ -32,7 +32,7 @@ model_type = "vit_h"
 model = YOLO("yolov8s-world.pt")
 
 # Load the image data path (change this to your desired path)
-base_dir = os.path.expanduser('~/YOLO-World-SAM_segmentation/example_image_dataset') # Change this absolute path to your desired path
+base_dir = os.path.expanduser('~/ROS2_YOLOWorld-SAM/example_image_dataset') # Change this absolute path to your desired path
 color_image_filename = input("Enter the image filename: ")
 color_image_path = os.path.join(base_dir, color_image_filename)
 
@@ -57,19 +57,23 @@ model.set_classes(keyword_list)
 results = model.predict(color_image_path)
 result = results[0]
 
-### PREDICT MASKS BASED ON A BOUNDING BOX ###
-input_box = result.boxes[0].xyxy[0].cpu().numpy() 
-masks, _, _ = predictor.predict(
-    point_coords=None,
-    point_labels=None,
-    box=input_box[None, :],
-    multimask_output=False,
-)
+# Check if any bounding boxes are detected
+if len(result.boxes) == 0:
+    print("No objects detected!")
+else:
+    ### PREDICT MASKS BASED ON A BOUNDING BOX ###
+    input_box = result.boxes[0].xyxy[0].cpu().numpy() 
+    masks, _, _ = predictor.predict(
+        point_coords=None,
+        point_labels=None,
+        box=input_box[None, :],
+        multimask_output=False,
+    )
 
-# Visualize the masks and bounding box
-plt.figure(figsize=(10, 10))
-plt.imshow(image)
-show_mask(masks[0], plt.gca())
-show_box(input_box, plt.gca())
-plt.axis('off')
-plt.show()
+    # Visualize the masks and bounding box
+    plt.figure(figsize=(10, 10))
+    plt.imshow(image)
+    show_mask(masks[0], plt.gca())
+    show_box(input_box, plt.gca())
+    plt.axis('off')
+    plt.show()
