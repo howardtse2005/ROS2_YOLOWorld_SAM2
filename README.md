@@ -45,4 +45,4 @@ ros2 run single_object single_object_node # For single object detection. Input 1
 
 ros2 run multiple_objects multiple_objects_node # For multiple objects detection. Input several keywords seperated by commas.
 ```
-Make sure you change the input topic name to the topic you want to subscribe to.
+Make sure you change the input topic name to the topic you want to subscribe to in the source code.
