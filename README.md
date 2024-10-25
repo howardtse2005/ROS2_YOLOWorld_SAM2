@@ -1,8 +1,10 @@
 # Object Detection and Segmentation
 This repository combines YOLO-World and SAM 2 (Segment Anything 2) to perform object segmentation based on keywords (zero-shot) and implement it in ROS2 Humble. YOLO-world will detect object and create bounding boxes, then SAM will create segmentation masks based on the bounding boxes.
 
-Before using this repository, make sure you install the dependencies needed for YOLO-World and SAM 2. You can refer to the following github repos:
+Before using this repository, make sure you install the dependencies needed for YOLO-World and SAM 2. You can refer to the following github repos: 
+
 YOLO-World: https://github.com/AILab-CVC/YOLO-World.git
+
 SAM 2: https://github.com/facebookresearch/sam2.git
 
 To use this repository, follow the following steps:
