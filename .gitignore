@@ -1,8 +1,7 @@
-sam_vit_h_4b8939.pth
-python_test/yolov8s-world.pt
 wget-log
+yolov8s-world.pt
 .vscode/
-ros2_ws/build/
-ros2_ws/install/
-ros2_ws/log/
-ros2_ws/yolov8s-world.pt
+sam2/
+build/
+install/
+log/
