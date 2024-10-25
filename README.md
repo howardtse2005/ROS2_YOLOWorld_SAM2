@@ -34,6 +34,7 @@ cd checkpoints && \
 ./download_ckpts.sh && \
 cd ..
 ```
+There are 4 checkpoints. You can edit the source code to import the checkpoint you desire
 5. To run the ROS2 codes
 ```
 colcon build
